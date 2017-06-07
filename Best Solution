@@ -1,0 +1,19 @@
+ int rob(vector<int>& nums)
+    {
+        int n = nums.size();
+        
+        if(!n)
+        return 0;
+           
+        int including = nums[0];
+        int excluding = 0;
+        int newExcluding = 0;
+        
+        for(int i = 1; i < n; i++)
+        {
+            newExcluding = max(including, excluding);
+            including = excluding + nums[i];
+            excluding = newExcluding;
+        }
+        return (excluding >= including)? excluding : including;
+    }
